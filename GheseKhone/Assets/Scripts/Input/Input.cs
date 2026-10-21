@@ -1,28 +1,29 @@
+
 using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
-public class Input : MonoBehaviour
+public class Input : MonoBehaviour,
+    IPointerDownHandler,
+    IPointerUpHandler,
+    IPointerExitHandler
 {
-    [SerializeField] InputActionMap inputActions;
+    public int direction;
+    public static float input;
 
-    void OnEnable()
+    public void OnPointerDown(PointerEventData eventData)
     {
-        inputActions.Enable();
-    }
-    void OnDisable()
-    {
-        inputActions.Disable();
-    }
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+        input = direction;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPointerUp(PointerEventData eventData)
     {
-        
+        if (input == direction)
+            input = 0;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (input == direction)
+            input = 0;
     }
 }
