@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Input : MonoBehaviour,
+public class InputHandeler : MonoBehaviour,
     IPointerDownHandler,
     IPointerUpHandler,
     IPointerExitHandler

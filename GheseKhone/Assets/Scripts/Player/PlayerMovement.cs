@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -6,10 +7,21 @@ public class PlayerMovement : MonoBehaviour
 
     public SpriteRenderer spriteRenderer;
 
+    [HideInInspector]
+    public bool canMove = true;
+
+    public static PlayerMovement instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
 
     void Update()
     {
-        float horizontal = Input.input;
+        if (!canMove) return;
+
+        float horizontal = InputHandeler.input;
 
         transform.position += Vector3.right
             * horizontal * speed * Time.deltaTime;
